@@ -17,7 +17,7 @@ else:
 
 setup(
     name="niceplot",
-    version="0.0.0",
+    version="0.0.1",
     author="Dennis Goldschmidt",
     author_email="dennis.goldschmidt@neuro.fchampalimaud.org",
     description=("Matplotlib wrapper for nice, easy-to-use and publishable plotting."),
