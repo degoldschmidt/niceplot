@@ -17,14 +17,15 @@ else:
 
 setup(
     name="niceplot",
-    version="0.0.1",
+    version="0.0.1.6",
     author="Dennis Goldschmidt",
     author_email="dennis.goldschmidt@neuro.fchampalimaud.org",
-    description=("Matplotlib wrapper for nice, easy-to-use and publishable plotting."),
+    description=("\"Hey, that's a nice plot!\""),
     license="GPLv3",
     keywords=['visualization', 'data analysis', 'matplotlib'],
     url="https://pypi.python.org/pypi/pytrack-analysis",
-    packages=find_packages(),
+    packages=['niceplot', 'fonts'],
+    package_data={'fonts': ['*.ttf']},
     python_requires='>=3.6',
     long_description=LONG_DESCRIPTION,
     classifiers=[
