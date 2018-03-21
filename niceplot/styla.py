@@ -4,7 +4,7 @@ import matplotlib.font_manager as fm
 import matplotlib.table as mpl_table
 import matplotlib.text as mpl_text
 
-def set_font(name, ax=None):
+def set_font(name, ax=None, VERBOSE=False):
     if ax is None:
         ax = plt.gca()
     for sites in sys.path:
@@ -13,7 +13,7 @@ def set_font(name, ax=None):
                 fontfile = os.path.join(sites, "fonts", name+".ttf")
 
     if os.path.exists(fontfile):
-        print("Loading font:", fontfile)
+        if VERBOSE: print("Loading font:", fontfile)
         textprop = fm.FontProperties(fname=fontfile)
         ### find all text objects
         texts = ax.findobj(match=mpl_text.Text)
