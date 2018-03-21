@@ -22,7 +22,7 @@ def stars(p):
     else:
         return "ns"
 
-def swarmbox(x=None, y=None, hue=None, data=None, order=None, hue_order=None,
+def swarmbox(x=None, y=None, hue=None, data=None, order=None, hue_order=None, multi=False,
                 dodge=False, orient=None, color=None, palette=None, table=False,
                 size=5, edgecolor="gray", linewidth=0, colors=None, ax=None, **kwargs):
     # default parameters
@@ -36,7 +36,12 @@ def swarmbox(x=None, y=None, hue=None, data=None, order=None, hue_order=None,
     }
 
     # multiconditions
-    data, sorted_x, sorted_order, unique_ones, plt_table = get_multi(data, x, order)
+    if multi:
+        data, sorted_x, sorted_order, unique_ones, plt_table = get_multi(data, x, order)
+    else:
+        sorted_x = x
+        sorted_order = None
+        plt_table = False
 
     # axis dimensions
     #ax.set_ylim([-2.,max_dur + 2.]) # this is needed for swarmplot to work!!!
@@ -47,7 +52,7 @@ def swarmbox(x=None, y=None, hue=None, data=None, order=None, hue_order=None,
                         orient=orient, color=color, palette=colors, saturation=defs['sat'],
                         width=defs['w'], linewidth=defs['lw'], ax=ax, boxprops=dict(lw=0.0), showfliers=False, **kwargs)
     # swarmplot
-    ax = sns.swarmplot(x=sorted_x, y=y, hue=hue, data=data, order=sorted_order, hue_order=hue_order,
+    ax = sns.swarmplot(x=sorted_x, y=y, hue=hue, data=data, order=sorted_order, hue_order=hue_order, split=True,
                         dodge=dodge, orient=orient, color=defs['pc'], palette=palette, size=defs['ps'], ax=ax, **kwargs)
     # median lines
     medians = data.groupby(sorted_x)[y].median()
